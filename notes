@@ -1,0 +1,102 @@
+etcd
+=====
+
+kubectl exec etcd-master -n kube-system etcdctl get / --prefix -keys-only
+
+*********** MASTER NODE ************
+
+kube-apiserver (on Master)
+==============
+kubectl --> talks to kube-apiserver
+can also use API directly --> curl -X POST /api/v1/namespaces/default/pods ...[other]
+
+can be downloaded as a binary from k8s release
+kube-apiserver.service
+
+kubectl get pods -n kube-system
+kube-apiserver-master (on master node)
+cat /etc/kubernets/manifests/kube-apiserver.yaml
+cat /etc/systemd/system/kube-apiserver.service
+ps -aux | grep kube-apiserver
+
+kube-controller-manager
+=======================
+1. Watch Status
+2. Remediate Situations
+
+-- Node-Controller----->(5sec)---->kube-apiserver------->[nodes] 
+(wait for 40 seconds once node goes down and marks are unreachable - then waits for 5 mins to come back up - if not, then it starts evacuating the pods and run them on available nodes)
+POD Eviction Timeout = 5m
+
+-- replication-controllers
+monitor is desired number of pods are running at all times
+
+many more controllers available
+
+kube-controller-manager.service
+
+kubectl get pods -n kube-system
+
+cat /etc/kubernetes/manifests/kube-controller-manager.yaml
+cat /etc/systemd/system/kube-controller-manager.service
+
+ps -aux | grep kube-controller-manager
+
+kube-scheduler
+===============
+decides what pods go to which node (doesn't do it himself, that's kubelet job)
+1. Filter Nodes (eg: based on resource requirements, affinity rules, etc.)
+2. Rank Nodes (eg: how many resources will be left after placing a pod - higher wins)
+
+cat /etc/kubernetes/manifests/kube-scheduler.yaml
+cat /etc/systemd/
+ps -aux 
+
+*********** WORKER NODE ************
+
+Kubelet:
+=========
+
+kubeadm does not deploy kubelet
+
+ps -aux | grep kubelet
+
+kube-proxy
+===========
+every pod can reach every pod - using virtual network - all pods connect to this network
+many solution available for deploying this
+uses iptables rules on every node to tell where the traffic needs to go for particular services
+
+can download from k8s release page
+
+kubectl get pods -n kube-system
+deployed as deamonset (every node will have at least 1 pod)
+kubectl get deamonset -n kube-system
+
+PODs
+=======
+containers are encapsulated inside pods in k8s
+do not add containers in the same pod to scale application
+
+
+
+YAML
+=====
+(indention matters - should be consistent)
+
+mandatory fields:
+------------------
+apiVersion: --> version of k8s api of what we are creating
+kind: --> Pod (e.g.: ReplicaSet, Deployment, etc.)
+metadata:
+  name: myapp-pod
+  labels:
+     app: myapp
+     type: front-end --> (to make it easier to find pods based on their function)
+spec:
+  containers:  --> List/Array
+    - name: nginx-container ("-" to tell this is first item in the list)
+      image: nginx
+
+kubectl describe pod myapp-pod
+
