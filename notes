@@ -102,4 +102,4 @@ kubectl describe pod myapp-pod
 
 PODS Demo
 =========
-
+- writing pod.yaml file
