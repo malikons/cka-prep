@@ -103,3 +103,43 @@ kubectl describe pod myapp-pod
 PODS Demo
 =========
 - writing pod.yaml file
+
+Generate pod yaml:
+==================
+kubectl run nginx --image=nginx --dry-run -o yaml
+
+Generate deployment YAML:
+=========================
+kubectl create deployment --image=httpd:2.4-alpine httpd-frontend --dry-run -o yaml > deployment-httpd-frontend.yaml
+
+
+master $ history
+    1  clear
+    2  RED='\033[0;31m'
+    3  NC='\033[0m'
+    4  trap 'rm -rf /tmp/load-quiz.sh ; rm -rf /tmp/wait-script.sh' SIGINT SIGQUIT ERR SIGTSTP
+    5  clear
+    6  while [ ! -f /tmp/wait-script.sh ] ; do clear; echo "Waiting for environment to load";   sleep .2; done
+    7  chmod 755 /tmp/wait-script.sh; /tmp/wait-script.sh
+    8  clear
+    9  kubectl get pods
+   10  kubectl get rs
+   11  kubectl get deployments
+   12  kubectl get rs
+   13  kubectl get pods
+   14  kubectl describe pod frontend-deployment-55c859888c-hxk4b
+   15  kubectl create -f deployment-definition-1.yaml
+   16  vim deployment-definition-1.yaml
+   17  kubectl create -f deployment-definition-1.yaml
+   18  kubectl get deployments
+   19  kubectl create deployment --image=httpd:2.4-alpine httpd-frontend --dry-run -o yaml > deployment-httpd-frontend.yaml
+   20  cat deployment-httpd-frontend.yaml
+   21  vim deployment-httpd-frontend.yaml
+   22  kubectl create deployment -f deployment-httpd-frontend.yaml
+   23  kubectl create -f deployment-httpd-frontend.yaml
+   24  kubectl get deployment
+   25  kubectl run nginx --image=nginx --dry-run -o yaml
+   26  history
+
+
+
