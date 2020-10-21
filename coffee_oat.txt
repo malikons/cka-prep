@@ -1,0 +1,24 @@
+ingredients:
+============
+
+- oat milk - 25ml
+- coffee - 1 capsule
+
+apparatus:
+==========
+
+- nespresso machine
+- milk frother
+
+Instructions:
+=============
+
+- add milk in frother
+- place a capsule in nespresso machine
+- put a coffee mug under the machine
+- press the coffee button on the machine to get coffee in the mug
+- turn on the frother to froth milk
+  - wait 15 seconds
+  - stop the frother
+  - pour the milk in the mug
+- stir the coffee
