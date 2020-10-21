@@ -1,0 +1,16 @@
+ingredients:
+============
+
+- coffee - 1 capsule
+
+apparatus:
+==========
+
+- nespresso machine
+
+Instructions:
+=============
+
+- place a capsule in nespresso machine
+- put a coffee mug under the machine
+- press the coffee button on the machine to get coffee in the mug
